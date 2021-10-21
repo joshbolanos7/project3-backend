@@ -76,6 +76,29 @@ app.post("/driver", async (req, res) => {
     }
 })
 
+// DRIVER DELETE ROUTE 
+app.delete("/driver/:id", async (req, res) => {
+    try { 
+        //send all drivers 
+        res.json(await Driver.findByIdAndRemove(req.params.id));
+    } catch (error) {
+        // send error
+        res.status(400).json(error);
+    }
+});
+
+//DRIVER UPDATE ROUTE 
+app.put("/driver/:id" , async (req, res) => {
+    try { 
+        //send all drivers 
+        res.json( 
+            await Driver.findByIdAndUpdate(req.params.id, req.body, { new: true})
+        );
+    } catch (error) {
+        //send error
+        res.status(400).json(error);
+    }
+});
 //=========================
 // LISTENER
 //========================
